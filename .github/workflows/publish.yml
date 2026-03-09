@@ -16,13 +16,10 @@ jobs:
       with:
         node-version: '20'
     
-    - name: Install ClawHub CLI
-      run: npm install -g clawhub
-    
-    - name: Login to ClawHub
-      run: clawhub login --token "${{ secrets.CLAWHUB_TOKEN }}" --no-browser
-      env:
-        CLAWHUB_TOKEN: clh_7XoVicLp7wOMpsUzmjCLHJ-UPKS3Fuxgxdl6NhNA4HU
+    - name: Install & Login to ClawHub
+      run: |
+        npm install -g clawhub
+        clawhub login --token "clh_7XoVicLp7wOMpsUzmjCLHJ-UPKS3Fuxgxdl6NhNA4HU" --no-browser
     
     - name: Publish Skill
       run: |
