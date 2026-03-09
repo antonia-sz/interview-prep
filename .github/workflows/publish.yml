@@ -16,12 +16,9 @@ jobs:
       with:
         node-version: '18'
     
-    - name: Install ClawHub CLI
-      run: npm install -g clawhub
-    
-    - name: Publish Skill
+    - name: Publish Skill to ClawHub
       run: |
-        clawhub publish . \
+        npx --package=clawhub@latest clawhub publish . \
           --slug interview-prep \
           --name "面试准备助手" \
           --version 1.0.0 \
