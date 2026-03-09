@@ -16,12 +16,18 @@ jobs:
       with:
         node-version: '20'
     
-    - name: Publish Skill to ClawHub
+    - name: Install ClawHub CLI
+      run: npm install -g clawhub
+    
+    - name: Login to ClawHub
+      run: clawhub login --token "${{ secrets.CLAWHUB_TOKEN }}" --no-browser
+      env:
+        CLAWHUB_TOKEN: clh_7XoVicLp7wOMpsUzmjCLHJ-UPKS3Fuxgxdl6NhNA4HU
+    
+    - name: Publish Skill
       run: |
-        npx --package=clawhub@latest clawhub publish . \
+        clawhub publish . \
           --slug interview-prep \
           --name "面试准备助手" \
           --version 1.0.0 \
           --changelog "首次发布：根据JD和简历预测面试题"
-      env:
-        CLAWHUB_TOKEN: clh_7XoVicLp7wOMpsUzmjCLHJ-UPKS3Fuxgxdl6NhNA4HU
